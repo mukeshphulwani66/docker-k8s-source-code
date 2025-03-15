@@ -1,0 +1,5 @@
+apiVersion: v2
+name: my-ingress-chart
+description: A Helm chart for deploying an Ingress resource
+type: application
+version: 1.0.0

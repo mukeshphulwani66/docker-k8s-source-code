@@ -1,0 +1,13 @@
+name: mern-backend
+namespace: mern-ns
+replicas: 1
+podLabels:
+  name: mern-app
+  component:  backend-api
+container: 
+  image: mukeshphulwani66/k8s-backend-demo
+  port: 5000
+  MONGOURI: mongodb://$(MONGO_INITDB_ROOT_USERNAME):$(MONGO_INITDB_ROOT_PASSWORD)@mongodb-headless:27017/mukeshdb?authSource=admin
+  # MONGOURI: mongodb+srv://mukeshphulwani55:5VmRkYjULPOwl6EF@cluster0.zs3vj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+secret:
+  name: mongodb-cred

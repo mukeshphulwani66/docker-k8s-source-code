@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+  namespace: {{.Values.namespace}}
+spec:
+  type: ClusterIP
+  selector:
+     app/component: {{.Values.podLabels.component}}
+  ports:
+  - port: {{.Values.container.port}}
+    targetPort: {{.Values.container.port}}

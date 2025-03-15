@@ -1,0 +1,65 @@
+name: Deploy Dist folder
+# on: [push,workflow_dispatch]
+on: 
+    # push:
+    #     branches:
+    #         - main
+    #         - 'feature/**'
+    #     paths-ignore:
+    #         - README.md  
+    #         - '.github/workflows/*' 
+    workflow_dispatch:        
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v4
+            #   run: |
+            #     echo "Cloning repo"
+            #     echo "${{toJson(github)}}"
+            #     git clone https://github.com/${{github.repository}}.git myfiles
+            #     cd myfiles && ls
+            - name: Setup Node and install depencencies
+              uses: ./.github/actions/setupnode
+              with: 
+                 node-version: 20
+            - name: Run Tests
+              run: npm run test   
+    build:    
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get Code
+            uses: actions/checkout@v4
+          - name: Setup Node and install depencencies
+            uses: ./.github/actions/setupnode
+          - name: build project
+            run: npm run build   
+          - name: Upload dist artifact  
+            uses: actions/upload-artifact@v4
+            with: 
+                name: dist-files
+                path: dist
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download Dist Artifact
+            uses: actions/download-artifact@v4 
+            with: 
+                name: dist-files
+                path: dist
+          - name: Deploy Dist
+            run: | 
+              echo 'deploying below files'
+              ls dist
+              echo 'Deployment completed'
+
+
+
+
+
+
+
+  

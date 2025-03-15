@@ -1,0 +1,18 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: hello-k8s
+#   labels:
+#     app/name: hello-k8s
+#     app/component: backend-api
+#   namespace: hello-ns  
+# spec:
+#   containers:
+#   - name: hellok8scontainer
+#     image: mukeshphulwani66/hello-k8s
+#     resources:
+#       limits:
+#         memory: "128Mi"
+#         cpu: "500m"
+#     ports:
+#       - containerPort: 5000

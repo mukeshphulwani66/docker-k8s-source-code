@@ -1,0 +1,9 @@
+architecture: replicaset
+useStatefulSet: true
+replicaCount: 2
+auth:
+  rootUser: admin
+  rootPassword: admin123
+persistence:
+  enabled: true
+  storageClass: ebs-sc 

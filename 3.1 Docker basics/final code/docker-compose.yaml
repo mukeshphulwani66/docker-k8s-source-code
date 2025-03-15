@@ -1,0 +1,23 @@
+name: "Node-App"
+services:
+  api:
+    container_name: "api-container"
+    build:
+      context: "./node app"
+      dockerfile: Dockerfile
+    image: node-api
+    ports:
+      - "5000:5000"  
+    volumes:
+      - my-imgs:/app/uploads   
+    develop:
+      watch:
+        - path: "./node app"
+          action: sync   
+          target: /app
+          ignore:
+            - node_modules
+
+  
+volumes:
+  my-imgs:

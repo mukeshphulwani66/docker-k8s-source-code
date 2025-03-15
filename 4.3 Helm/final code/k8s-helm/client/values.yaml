@@ -1,0 +1,9 @@
+name: mern-client
+namespace: mern-ns
+replicas: 1
+podLabels:
+  name: mern-app
+  component: client-ui
+container: 
+  image: mukeshphulwani66/k8s-client-demo
+  port: 80 

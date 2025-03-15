@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+
+input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 3px;
+  width: 250px;
+  font-size: 14px;
+}
+
+button{
+  width: 70px;
+  height: 40px;
+  font-size: 16px;
+  padding: 5px;
+  color: white;
+  background-color: rgb(0, 128, 255);
+  border: 2px solid blue;
+}

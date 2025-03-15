@@ -1,0 +1,8 @@
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: database-config
+#   namespace: mern-ns 
+# data:
+#   MONGO_INITDB_ROOT_USERNAME: admin
+#   MONGO_INITDB_ROOT_PASSWORD: admin123

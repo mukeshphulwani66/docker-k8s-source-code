@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-client
+  namespace: mern-ns 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app/component: client-ui
+  template:
+    metadata:
+      labels:
+        app/name: mern-app
+        app/component: client-ui
+    spec:
+      containers:
+      - name: clientcontainer
+        image: mukeshphulwani66/k8s-client-demo
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
