@@ -8,6 +8,7 @@ This repository contains the **complete code** for the **Docker and Kubernetes**
 
 Here are some helpful cheat sheets and guides:
 
+- 📌 [Setup NGINX with Custom domain with HTTPS on EC2](https://gist.github.com/mukeshphulwani66/acf47cf4c604ccd2e97f4c7e8b770f55)  
 - 📌 [Docker Commands Cheat Sheet](https://gist.github.com/mukeshphulwani66/9e2b0f6ce4ce086e77f76c8823e4fa92)  
 - 📌 [Kubernetes Commands Cheat Sheet](https://gist.github.com/mukeshphulwani66/50fd398718dd29a7cd98cfb96f2cab60)  
 - 📌 [Helm Commands Cheat Sheet](https://gist.github.com/mukeshphulwani66/a3a89814fc48474e7c999aecf610cf19)  
