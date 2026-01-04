@@ -33,6 +33,9 @@ Here are the repositories for different sections of the course:
 ### ☸️ AWS EKS CI/CD Section
 🔗 [EKS CI/CD Demo](https://github.com/mukeshphulwani66/eks-cicd-demo)
 
+### ⚙️ Ansible Lab Setup (Starter Project)
+🔗 [Ansible lab setup](https://github.com/mukeshphulwani66/ansible-lab-setup)
+
 ---
 
 💡 **Stay tuned for updates!** 🚀 Happy learning!
