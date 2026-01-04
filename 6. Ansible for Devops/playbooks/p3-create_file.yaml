@@ -1,0 +1,16 @@
+- name: Create directory and file with content
+  hosts: all
+  become: true
+  tasks:
+    - name: Step 1 - Create directory 
+      file:
+        path: /mydir
+        state: directory
+    - name: Step 2 - Create empty file
+      file:
+        path: /mydir/hello.txt
+        state: touch
+    - name: Step 3 - write content to file
+      copy:
+        content: "hello world\n"
+        dest: /mydir/hello.txt

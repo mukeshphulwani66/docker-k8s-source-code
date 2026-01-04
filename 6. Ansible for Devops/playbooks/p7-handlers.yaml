@@ -1,0 +1,26 @@
+- name: Configure nginx 
+  hosts: webservers
+  become: true
+  tasks:
+    - name: install nginx 
+      apt: 
+        name: nginx
+        state: present 
+        update_cache: yes
+    - name: copy nginx config 
+      copy: 
+         src: configs/nginx.conf
+         dest: /etc/nginx/nginx.conf   
+      notify: Restart nginx   
+    # - name: Restart nginx 
+    #   service:
+    #     name: nginx 
+    #     state: restarted      
+  handlers:
+    - name: Restart nginx 
+      service:
+        name: nginx 
+        state: restarted     
+
+
+

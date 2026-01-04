@@ -1,0 +1,58 @@
+# - name: Error handling example
+#   hosts: all
+#   tasks:
+#     - block:
+#         - name: Try reading file
+#           command: cat /tmp/test.txt
+#       rescue:
+#         - name: create file if missing
+#           file:
+#              path: /tmp/test.txt
+#              state: touch
+#       always:
+#         - name: Alwats print message
+#           debug: 
+#              msg: This runs no matters what 
+
+- name: deploy nginx
+  hosts: nginx
+  become: true
+  vars:
+     nginx_port: 80
+  tasks:
+    - block:
+        - name: Backup current nginx config 
+          copy: 
+            src:  /etc/nginx/nginx.conf 
+            dest: /etc/nginx/nginx.conf.bak 
+            remote_src: true 
+        - name: Deploy new nginx config
+          template: 
+            src: configs/nginx.conf.j2
+            dest: /etc/nginx/nginx.conf
+        - name: validate nginx config
+          command: nginx -t
+        - name: Restart nginx
+          service:
+              name: nginx 
+              state: restarted     
+  
+      rescue:
+        - name: Restore previos nginx config
+          copy: 
+            src:  /etc/nginx/nginx.conf.bak
+            dest: /etc/nginx/nginx.conf
+            remote_src: true 
+        - name: Restart nginx
+          service:
+              name: nginx 
+              state: restarted   
+        - name: failed deployment
+          fail: 
+             msg: deployment failed on {{inventory_hostname}}         
+      always:
+        - name: log deployment
+          debug: 
+             msg: nginx deployment apttempted on {{inventory_hostname}}     
+
+

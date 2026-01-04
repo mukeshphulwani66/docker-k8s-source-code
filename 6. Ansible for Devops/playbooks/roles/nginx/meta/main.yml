@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Mukesh Phulwani
+  description: Install and configure nginx as a web server or load balancer
+  company: ExampleCorp
+  license: MIT
+  min_ansible_version: "2.1"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - nginx
+    - web
+    - loadbalancer
+    - reverseproxy
+    - proxy
+
+dependencies: []

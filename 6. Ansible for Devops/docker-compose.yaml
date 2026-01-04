@@ -1,0 +1,48 @@
+services:
+  master:
+    build:
+      context: ./master
+    container_name: ansible-master
+    volumes:
+      - ./inventory.ini:/etc/ansible/hosts       
+      - ./master/ansible.cfg:/etc/ansible/ansible.cfg 
+      - ./ssh-keys:/home/ansible/.ssh
+      - ./playbooks:/home/ansible/playbooks     
+    depends_on:
+      - ubuntu1
+      - ubuntu2
+      - ubuntu3
+    tty: true
+    networks:
+      - ansiblenet
+
+  ubuntu1:
+    build:
+      context: ./managed
+    container_name: ubuntu1
+    ports:
+      - "2221:22"
+    networks:
+      - ansiblenet
+
+  ubuntu2:
+    build:
+      context: ./managed
+    container_name: ubuntu2
+    ports:
+      - "2222:22"
+    networks:
+      - ansiblenet
+
+  ubuntu3:
+    build:
+      context: ./managed
+    container_name: ubuntu3
+    ports:
+      - "2223:22"
+    networks:
+      - ansiblenet
+
+networks:
+  ansiblenet:
+ 

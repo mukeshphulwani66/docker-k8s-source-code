@@ -1,0 +1,23 @@
+- name: Install list of packages
+  hosts: dbservers
+  become: true 
+  vars:
+    packages:
+         - git 
+         - curl
+         - wget  
+    install_enabled: true     
+
+  tasks:
+    - name: Install package 
+      apt: 
+        name: "{{item}}"
+        state: present
+      loop: "{{packages}}"  
+      when: 
+        - ansible_os_family == "Debian"
+        - install_enabled
+      # loop:
+      #    - git 
+      #    - curl
+      #    - wget  

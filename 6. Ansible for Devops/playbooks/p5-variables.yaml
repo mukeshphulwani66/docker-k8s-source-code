@@ -1,0 +1,19 @@
+- name: Create directory and file using variables
+  hosts: all
+  become: true
+  vars:
+    my_dir: /myfolder
+    my_file: hello.txt
+    file_content: "hello world"
+  tasks:
+    - name: Create directory 
+      file:
+        path: "{{my_dir}}"
+        state: directory
+    - name: write content to file
+      vars:
+        file_mode: "644"
+      copy:
+        content: "{{file_content}}\n"
+        dest: "/{{my_dir}}/{{my_file}}"
+        mode: "{{file_mode}}"

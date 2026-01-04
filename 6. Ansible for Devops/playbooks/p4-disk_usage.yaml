@@ -1,0 +1,10 @@
+- name: Disk usage check
+  hosts: all 
+  tasks:
+    - name: check disk usage 
+      shell: df -h | grep ^/dev/sd
+      register: disk_output 
+      changed_when: false
+    - name: Show disk usage 
+      debug:   
+        msg: "{{disk_output.stdout}}"

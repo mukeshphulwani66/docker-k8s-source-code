@@ -1,0 +1,8 @@
+- hosts: dbservers
+  become: true
+  vars_files:
+    - secrets/creds.yaml
+  tasks:
+    - name: Print db user
+      debug:
+        msg: "DB User is {{ db_user }}"

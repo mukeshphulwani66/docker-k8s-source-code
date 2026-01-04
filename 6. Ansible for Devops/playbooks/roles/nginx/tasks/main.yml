@@ -1,0 +1,19 @@
+---
+# tasks file for nginx
+- name: install nginx 
+  apt: 
+    name: nginx
+    state: present 
+    update_cache: yes
+- name: nginx config for web
+  template: 
+      src: nginx.conf.j2
+      dest: /etc/nginx/nginx.conf   
+  notify: Restart nginx    
+  when: inventory_hostname in groups['webservers']   
+- name: nginx config for lb
+  template: 
+      src: nginx-lb.conf.j2
+      dest: /etc/nginx/nginx.conf   
+  notify: Restart nginx    
+  when: inventory_hostname in groups['nginx'] 

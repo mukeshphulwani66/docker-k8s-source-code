@@ -1,0 +1,10 @@
+events {}
+
+http {
+    server {
+        listen {{nginx_port}};
+        location / {
+            return 200 "hello from nginx from {{ansible_default_ipv4.address}} \n";
+        }
+    }
+}
